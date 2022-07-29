@@ -6,10 +6,10 @@
         <router-link to="/">Budget</router-link>
       </li>
       <li>
-        <router-link to="/">Help</router-link>
+        <router-link to="/help">Help</router-link>
       </li>
       <li>
-        <a href="#">Message</a>
+        <a href="#" @click.prevent="openSidebar">Message</a>
       </li>
       <li>
         <a href="#" @click.prevent="logout">Exit</a>
@@ -32,7 +32,8 @@
         logout: () => {
           store.commit('auth/logout')
           router.push('/auth')
-        }
+        },
+        openSidebar: () => store.commit('openSidebar')
       }
     }
   }

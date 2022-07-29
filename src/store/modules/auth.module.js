@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {error} from '../../../utils/error'
+import {error} from '../../utils/error'
 
 const TOKEN_KEY = 'bac-token'
 
@@ -32,6 +32,22 @@ export default {
     async login({commit, dispatch}, payload) {
       try {
         const {data} = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.VUE_APP_FB_KEY}`, {
+          ...payload,
+          returnSecureToken: true
+        })
+        commit('setToken', data.idToken)
+        commit('clearMessage', null, {root: true})
+      } catch (e) {
+        dispatch('setMessage', {
+          value: error(e.response.data.error.message),
+          type: 'danger'
+        }, {root: true})
+        throw new Error(e)
+      }
+    },
+    async register({commit, dispatch}, payload) {
+      try {
+        const {data} = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.VUE_APP_FB_KEY}`, {
           ...payload,
           returnSecureToken: true
         })

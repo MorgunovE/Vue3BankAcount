@@ -1,7 +1,4 @@
 <template>
-<!--  <main-layout></main-layout>-->
-<!--  <auth-layout></auth-layout>-->
-<!--  <router-view/>-->
   <component :is="layout + '-layout'" v-if="layout" />
 </template>
 

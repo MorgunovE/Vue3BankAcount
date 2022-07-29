@@ -19,6 +19,15 @@ export function useLoginForm() {
     }
   })
   
+  const register = handleSubmit(async values => {
+    try {
+      await store.dispatch('auth/register', values)
+      router.push('/')
+    } catch (e) {
+      console.log(e)
+    }
+  })
+  
   const tooManySubmits = computed(() => submitCount.value >= 3)
   
   watch(tooManySubmits, val => {
@@ -57,6 +66,7 @@ export function useLoginForm() {
     pBlur,
     onSubmit,
     isSubmitting,
-    tooManySubmits
+    tooManySubmits,
+    register
   }
 }

@@ -14,6 +14,7 @@
     </div>
     
     <button class="btn primary" type="submit" :disabled="isSubmitting || tooManySubmits">Sing In</button>
+    <button class="btn" @click.prevent="register">Register</button>
     <span class="text-danger" v-if="tooManySubmits"> Too many times submitted form</span>
   </form>
 </template>
@@ -22,7 +23,7 @@
   import {useLoginForm} from '../use/login-form'
   import {useRoute} from 'vue-router'
   import {useStore} from 'vuex'
-  import {error} from '../../utils/error'
+  import {error} from '../utils/error'
   
   export default {
     name: "Auth",
@@ -35,6 +36,7 @@
           type: 'warning'
         })
       }
+      
       return {
         ...useLoginForm()
       }
