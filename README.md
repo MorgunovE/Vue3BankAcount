@@ -1,5 +1,8 @@
 # vue-practice-app
 
+* https://vue3-online-bank-7634b.web.app/
+* https://vue3-online-bank-7634b.firebaseapp.com/
+
 ## Project setup
 ```
 npm install
